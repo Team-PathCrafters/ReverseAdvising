@@ -32,16 +32,17 @@ create table Major_Jobs(
     foreign key (JobID) references Jobs(JobID)
     );
 
-create table Attributes(
-	AttriID int auto_increment primary key,
-    Attri_name varchar(100)
+create table Requirements(
+	ReqID int auto_increment primary key,
+    Req_name varchar(100),
+	Req_Val int
 );
 
-create table Job_Attributes(
-	AttriID int, 
+create table Job_Requirements(
+	ReqID int, 
     JobID int,
-    Primary key (AttriID, JobID),
-    foreign key (AttriID) references Attributes(AttriID),
+    Primary key (ReqID, JobID),
+    foreign key (ReqID) references Requirements(ReqID),
     foreign key (JobID) references Jobs(JobID)
     );
     
