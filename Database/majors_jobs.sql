@@ -6,7 +6,6 @@ Use Advisor;
 create table Major(
 	MajorID int auto_increment primary key,
     Major_name varchar(100),
-    Description text,
     CreditHrs int,
     focus varchar(100)
     );
@@ -19,6 +18,7 @@ create table Major_Views(
 create table Jobs(
 	JobID int auto_increment primary key,
     Job_name varchar(100),
+	Final_degree varchar(20),
     years_needed int, 
     avgCost decimal(10,2),
     Salary decimal(10,2)
@@ -32,17 +32,16 @@ create table Major_Jobs(
     foreign key (JobID) references Jobs(JobID)
     );
 
-create table Requirements(
-	ReqID int auto_increment primary key,
-    Req_name varchar(100),
-	Req_Val int
+create table Attributes(
+	AttriID int auto_increment primary key,
+    Attri_name varchar(100)
 );
 
-create table Job_Requirements(
-	ReqID int, 
+create table Job_Attributes(
+	AttriID int, 
     JobID int,
-    Primary key (ReqID, JobID),
-    foreign key (ReqID) references Requirements(ReqID),
+    Primary key (AttriID, JobID),
+    foreign key (AttriID) references Attributes(AttriID),
     foreign key (JobID) references Jobs(JobID)
     );
     
@@ -58,6 +57,22 @@ create table Answers (
     foreign key (QuestionID) references Questions(QuestionID)
 		on delete cascade
         on update cascade
+);
+
+Create table Answer_Major_Link(
+	AnswerID int,
+	MajorID int
+	primary key (AnswerID, MajorID),
+	foreign key (AnswerID) references Answers(AnswerID),
+	foreign key (MajorID) references Major(MajorID)
+);
+
+Create table Anser_Job_link(
+	AnswerID int,
+	JobID int
+	primary key (AnswerID, JobID),
+	foreign key (AnswerID) references Answers(AnswerID),
+	foreign key (JobID) references Major(JobID)
 );
 
 -- in case we need to edit the questions/answers
