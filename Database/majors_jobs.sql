@@ -61,7 +61,7 @@ create table Answers (
 
 Create table Answer_Major_Link(
 	AnswerID int,
-	MajorID int
+	MajorID int,
 	primary key (AnswerID, MajorID),
 	foreign key (AnswerID) references Answers(AnswerID),
 	foreign key (MajorID) references Major(MajorID)
@@ -69,11 +69,69 @@ Create table Answer_Major_Link(
 
 Create table Anser_Job_link(
 	AnswerID int,
-	JobID int
+	JobID int,
 	primary key (AnswerID, JobID),
 	foreign key (AnswerID) references Answers(AnswerID),
 	foreign key (JobID) references Major(JobID)
 );
+--add all current Majors 
+INSERT INTO Major (Major_name, CreditHrs, focus)
+VALUES
+('Biochemistry', 120, 'Study of chemical processes within living organisms'),
+('Cellular & Molecular Biology', 120, 'Focus on molecular and cellular mechanisms of life'),
+('Biology', 120, 'Broad study of living organisms and biological systems'),
+('Chemistry', 120, 'Study of matter, reactions, and composition'),
+('Nursing', 120, 'Healthcare and patient care studies');
+
+--add all current jobs 
+INSERT INTO Jobs (Job_name, Final_degree, years_needed, avgCost, Salary)
+VALUES
+('Doctor', 'MD or OD', 11, 300000.00, 375000.00),
+('Physician Assistant', 'PA', 4, 107000.00, 130000.00),
+('Nurse Practitioner', 'MSN or DNP', 4, 80000.00, 132000.00),
+('Pharmacist', 'PharmD', 4, 200000.00, 151000.00),
+('Nurse', 'BSN', 0, NULL, 93000.00),
+('Dentist', 'DDS', 8, 400000.00, 195000.00),
+('Dermatologist', 'MD or OD', 11, 300000.00, NULL),
+('Anesthesiologist', 'MD or OD', 11, 300000.00, NULL),
+('Surgeon', 'MD or OD', 13, 300000.00, NULL);
+
+
+INSERT INTO Major_Jobs (JobID, MajorID)
+VALUES (1, 1), (1, 2), (1, 3);
+
+-- Physician Assistant
+INSERT INTO Major_Jobs (JobID, MajorID)
+VALUES (2, 1), (2, 2), (2, 3);
+
+-- Nurse Practitioner
+INSERT INTO Major_Jobs (JobID, MajorID)
+VALUES (3, 1), (3, 2), (3, 3), (3, 5);
+
+-- Pharmacist
+INSERT INTO Major_Jobs (JobID, MajorID)
+VALUES (4, 1), (4, 4);
+
+-- Nurse
+INSERT INTO Major_Jobs (JobID, MajorID)
+VALUES (5, 5);
+
+-- Dentist
+INSERT INTO Major_Jobs (JobID, MajorID)
+VALUES (6, 1), (6, 2), (6, 3);
+
+-- Dermatologist (same as Doctor)
+INSERT INTO Major_Jobs (JobID, MajorID)
+VALUES (7, 1), (7, 2), (7, 3);
+
+-- Anesthesiologist (same as Doctor)
+INSERT INTO Major_Jobs (JobID, MajorID)
+VALUES (8, 1), (8, 2), (8, 3);
+
+-- Surgeon (same as Doctor)
+INSERT INTO Major_Jobs (JobID, MajorID)
+VALUES (9, 1), (9, 2), (9, 3);
+
 
 -- in case we need to edit the questions/answers
 	-- un comment and run both lines
