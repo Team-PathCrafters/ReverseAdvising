@@ -20,19 +20,21 @@
         </header>
 
         <main class="content">
-            <div class="search-container">
-                <input type="text" id="career-search" placeholder="Search for a career...">
-                <button class="search-button" onclick="">🔍</button> <!--Needs to search database-->
+            <div id="autocomplete-root" class="search-container autocomplete">
+                <input id="careersearch" type="careersearch" autocomplete="off" aria-autocomplete="list" aria-controls="results" aria-haspopup="listbox" placeholder="Search for a career...">
+				<div id="results" role="listbox" class="listbox" hidden></div>
+                <button id="searchButton" class="search-button" onclick="">🔍</button> <!--Needs to search database-->
+				
             </div>
 
             <div class="cards-container"> <!--Need to make these work with the database-->
-                <div class="card fontBOLD">
+                <div id="major1" class="card fontBOLD">
                     <h3>Major 1</h3>
                     <p>Years of schooling: X</p>
                     <p>Cost estimate: $X</p>
                 </div>
 
-                <div class="card fontBOLD">
+                <div id="major2" class="card fontBOLD">
                     <h3>Major 2</h3>
                     <p>Years of schooling: X</p>
                     <p>Cost estimate: $X</p>
@@ -43,7 +45,7 @@
                     <p>Years of residency training: X</p>
                 </div>
 
-                <div class="card fontBOLD">
+                <div id="major3" class="card fontBOLD">
                     <h3>Major 3</h3>
                     <p>Years of schooling: X</p>
                     <p>Cost estimate: $X</p>
@@ -52,5 +54,6 @@
 
             <button class="button fontBOLD" onclick="">SEARCH AGAIN</button> <!--Needs to search database-->
         </main>
+		<script src="Scripts/careersearch.js"></script>
     </body>
 </html>
