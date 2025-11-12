@@ -1,7 +1,20 @@
-
-drop database if exists 4702744_advisor;
-create database 4702744_advisor;
 Use 4702744_advisor;
+
+SET FOREIGN_KEY_CHECKS = 0;
+
+DROP TABLE IF EXISTS 
+    Answer_Job_Link,
+    Answer_Major_Link,
+    Answers,
+    Questions,
+    Job_Attributes,
+    Attributes,
+    Major_Jobs,
+    Major_Views,
+    Jobs,
+    Major;
+
+SET FOREIGN_KEY_CHECKS = 1;
 
 create table Major(
 	MajorID int auto_increment primary key,
