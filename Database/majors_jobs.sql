@@ -74,7 +74,7 @@ Create table Anser_Job_link(
 	foreign key (AnswerID) references Answers(AnswerID),
 	foreign key (JobID) references Major(JobID)
 );
---add all current Majors 
+-- add all current Majors 
 INSERT INTO Major (Major_name, CreditHrs, focus)
 VALUES
 ('Biochemistry', 120, 'Study of chemical processes within living organisms'),
@@ -83,7 +83,7 @@ VALUES
 ('Chemistry', 120, 'Study of matter, reactions, and composition'),
 ('Nursing', 120, 'Healthcare and patient care studies');
 
---add all current jobs 
+-- add all current jobs 
 INSERT INTO Jobs (Job_name, Final_degree, years_needed, avgCost, Salary)
 VALUES
 ('Doctor', 'MD or OD', 11, 300000.00, 375000.00),
@@ -135,11 +135,11 @@ VALUES (9, 1), (9, 2), (9, 3);
 
 -- in case we need to edit the questions/answers
 	-- un comment and run both lines
---TRUNCATE TABLE Answers;
---TRUNCATE TABLE Questions;
+-- TRUNCATE TABLE Answers;
+-- TRUNCATE TABLE Questions;
 
 
---add questions and answers 
+-- add questions and answers 
 INSERT INTO Questions (QuestionText)
 VALUES ('What excites you most about working in healthcare?');
 
