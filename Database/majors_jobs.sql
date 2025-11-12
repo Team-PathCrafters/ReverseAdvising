@@ -1,7 +1,7 @@
 
-drop database if exists Advisor;
-create database Advisor;
-Use Advisor;
+drop database if exists 4702744_advisor;
+create database 4702744_advisor;
+Use 4702744_advisor;
 
 create table Major(
 	MajorID int auto_increment primary key,
@@ -67,12 +67,12 @@ Create table Answer_Major_Link(
 	foreign key (MajorID) references Major(MajorID)
 );
 
-Create table Anser_Job_link(
+Create table Answer_Job_link(
 	AnswerID int,
 	JobID int,
 	primary key (AnswerID, JobID),
 	foreign key (AnswerID) references Answers(AnswerID),
-	foreign key (JobID) references Major(JobID)
+	foreign key (JobID) references Jobs(JobID)
 );
 -- add all current Majors 
 INSERT INTO Major (Major_name, CreditHrs, focus)
