@@ -95,7 +95,8 @@ VALUES
 ('Biology', 120, 'Broad study of living organisms and biological systems'),
 ('Chemistry', 120, 'Study of matter, reactions, and composition'),
 ('Nursing', 120, 'Healthcare and patient care studies');
-
+('Exercise Science', 120, 'Study of human movement, exercise physiology, and rehabilitation sciences'),
+('Paramedicine', 120, 'Emergency medical care, trauma response, and pre-hospital procedures');
 -- add all current jobs 
 INSERT INTO Jobs (Job_name, Final_degree, years_needed, avgCost, Salary)
 VALUES
@@ -108,7 +109,13 @@ VALUES
 ('Dermatologist', 'MD or OD', 11, 300000.00, NULL),
 ('Anesthesiologist', 'MD or OD', 11, 300000.00, NULL),
 ('Surgeon', 'MD or OD', 13, 300000.00, NULL);
-
+('Veterinarian', 'DVM', 4, 400000.00, 120000.00),
+('Radiologist', 'MD or OD', 11, 300000.00, 526000.00),
+('Physical Therapist', 'DPT', 3, 200000.00, 100000.00),
+('Occupational Therapist', 'MOT', 3, 200000.00, 97000.00),
+('Paramedic', NULL, 0, 84376, 51432),
+('Oral Surgeon', 'DDS', 8, 400000.00, 195000.00), 
+('Pediatric Nurse', 'BSN', 0, NULL, 93000.00);
 
 INSERT INTO Major_Jobs (JobID, MajorID)
 VALUES (1, 1), (1, 2), (1, 3);
@@ -146,10 +153,37 @@ INSERT INTO Major_Jobs (JobID, MajorID)
 VALUES (9, 1), (9, 2), (9, 3);
 
 
--- in case we need to edit the questions/answers
-	-- un comment and run both lines
--- TRUNCATE TABLE Answers;
--- TRUNCATE TABLE Questions;
+-- Veterinarian → Biology (Major 3)
+INSERT INTO Major_Jobs (JobID, MajorID)
+VALUES (10, 3);
+
+-- Radiologist → Biochem (1), CMB (2), Biology (3)
+INSERT INTO Major_Jobs (JobID, MajorID)
+VALUES 
+(11, 1), (11, 2), (11, 3);
+
+-- Physical Therapist → Exercise Science (6), Biology (3)
+INSERT INTO Major_Jobs (JobID, MajorID)
+VALUES 
+(12, 6), (12, 3);
+
+-- Occupational Therapist → Exercise Science (6), Biology (3)
+INSERT INTO Major_Jobs (JobID, MajorID)
+VALUES 
+(13, 6), (13, 3);
+
+-- Paramedic → Paramedicine (7)
+INSERT INTO Major_Jobs (JobID, MajorID)
+VALUES (14, 7);
+
+-- Oral Surgeon → same as Dentist → Biochem (1), CMB (2), Biology (3)
+INSERT INTO Major_Jobs (JobID, MajorID)
+VALUES
+(15, 1), (15, 2), (15, 3);
+
+-- Pediatric Nurse → Nursing (5)
+INSERT INTO Major_Jobs (JobID, MajorID)
+VALUES (16, 5);
 
 
 -- add questions and answers 
