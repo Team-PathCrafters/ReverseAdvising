@@ -185,6 +185,66 @@ VALUES
 INSERT INTO Major_Jobs (JobID, MajorID)
 VALUES (16, 5);
 
+INSERT INTO Attributes (Attri_name) VALUES
+('volunteer work'),       
+('shadowing'),            
+('MCAT exam'),            
+('1-3 years healthcare experience'), 
+('RN or BSN degree'),     
+('PCAT exam'),            
+('pass boards'),          
+('DAT exam');             
+
+
+-- Doctor (JobID 1)
+INSERT INTO Job_Attributes VALUES (1,1),(2,1),(3,1);
+
+-- Physician Assistant (JobID 2)
+INSERT INTO Job_Attributes VALUES (4,2);
+
+-- Nurse Practitioner (JobID 3)
+INSERT INTO Job_Attributes VALUES (5,3);
+
+-- Pharmacist (JobID 4)
+INSERT INTO Job_Attributes VALUES (6,4),(7,4);
+
+-- Nurse (JobID 5)
+INSERT INTO Job_Attributes VALUES (7,5);
+
+-- Dentist (JobID 6)
+INSERT INTO Job_Attributes VALUES (1,6),(2,6),(8,6);
+
+-- Dermatologist = same as Doctor (JobID 7)
+INSERT INTO Job_Attributes VALUES (1,7),(2,7),(3,7);
+
+-- Anesthesiologist = same as Doctor (JobID 8)
+INSERT INTO Job_Attributes VALUES (1,8),(2,8),(3,8);
+
+-- Surgeon = same as Doctor (JobID 9)
+INSERT INTO Job_Attributes VALUES (1,9),(2,9),(3,9);
+
+-- Veterinarian (JobID 10)
+INSERT INTO Job_Attributes VALUES (1,10),(2,10),(3,10);
+
+-- Radiologist (JobID 11)
+INSERT INTO Job_Attributes VALUES (1,11),(2,11),(3,11);
+
+-- Physical Therapist (JobID 12)
+INSERT INTO Job_Attributes VALUES (7,12);
+
+-- Occupational Therapist (JobID 13)
+INSERT INTO Job_Attributes VALUES (7,13);
+
+-- Paramedic (JobID 14)
+-- No attributes
+
+-- Oral Surgeon (JobID 15)
+INSERT INTO Job_Attributes VALUES (1,15),(2,15),(8,15);
+
+-- Pediatric Nurse (JobID 16)
+INSERT INTO Job_Attributes VALUES (7,16);
+
+
 
 -- add questions and answers 
 INSERT INTO Questions (QuestionText)
