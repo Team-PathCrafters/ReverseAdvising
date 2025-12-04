@@ -1,11 +1,3 @@
-// --- Configuration ---
-const DATA = [
-  'Nursing', 'Exercise Science', 'Radiologic Technology', 'Paramedicine', 'Pre-Medicine',
-  'Biochemistry', 'Chemistry', 'Biological Sciences', 'Cellular & Molecular Biology', 'Medical Laboratory Sciences',
-  'Public Health', 'Psychology', 'Environmental Science', 'Secondary Education Prep',
-  'Radiologic Technology', 'Medical Laboratory Sciences', 'Applied Science', 'Pre-Engineering'
-];
-
 // --- Helpers ---
 function debounce(fn, wait) {
   let t;
@@ -87,11 +79,30 @@ function escapeHtml(str) {
     input.focus();
   }
 
-  async function querySource(q) {
-    if (!q) return [];
+ async function querySource(q) {
+  if (!q) return [];
+
+  try {
+    const response = await fetch(`http://localhost:3000/jobs`);
+    
+    if (!response.ok) {
+      console.error("API error:", response.statusText);
+      return [];
+    }
+
+    const jobs = await response.json(); // expecting an array of job objects from your backend
+
+    // Filter and limit to 10 results
     const lower = q.toLowerCase();
-    return DATA.filter(s => s.toLowerCase().includes(lower)).slice(0, 10);
+    return jobs
+      .filter(job => job.Job_name.toLowerCase().includes(lower))
+      .slice(0, 10)
+      .map(job => job.Job_name); // return only names
+  } catch (err) {
+    console.error("Fetch failed:", err);
+    return [];
   }
+}
 
   const onInput = debounce(async function (e) {
     const q = e.target.value;
@@ -141,61 +152,68 @@ function escapeHtml(str) {
 
 //Career Search Major information
 
-const majorData = {
-  nursing: {
-	yearsOfSchool: "Years of schooling: X",
-    cost: "Cost estimate: $X",
-    gradYears: "Years of grad schooling: X",
-	gradCost: "Cost estimate: $X",
-	residencyYears: "Years of residency training: X"
-  },
-  nursing: {
-	yearsOfSchool: "Years of schooling: X",
-    cost: "Cost estimate: $X",
-    gradYears: "Years of grad schooling: X",
-	gradCost: "Cost estimate: $X",
-	residencyYears: "Years of residency training: X"
-  },
-  nursing: {
-	yearsOfSchool: "Years of schooling: X",
-    cost: "Cost estimate: $X",
-    gradYears: "Years of grad schooling: X",
-	gradCost: "Cost estimate: $X",
-	residencyYears: "Years of residency training: X"
-  }
-};
+async function populateMajors(jobName) {
+    try {
+        const response = await fetch(`http://localhost:3000/job/${encodeURIComponent(jobName)}`);
+        const job = await response.json();
 
-// Function to populate the boxes
-function populateBoxes(query) {
-  const major = majorData[query.toLowerCase()];
-  
-  const major1 = document.getElementById("major1");
-  const major2 = document.getElementById("major2");
-  const major3 = document.getElementById("major3");
-  
-  
-  if (major) {
-    major1.innerHTML = `<h3>${capitalize(query)}</h3><p>${major.yearsOfSchool}</p>`;
-    major2.innerHTML = `<h3>${capitalize(query)}</h3><p>${major.cost}</p>`;
-    major3.innerHTML = `<h3>${capitalize(query)}</h3><p>${major.gradYears}</p>`;
-  } else {
-    major1.innerHTML = `<p>No information found for "${query}"</p>`;
-    major2.innerHTML = "";
-    major3.innerHTML = "";
-  }
+        if (job.error) {
+            document.getElementById("major1").innerHTML = `<p>No job found for "${jobName}"</p>`;
+            document.getElementById("major2").innerHTML = "";
+            document.getElementById("major3").innerHTML = "";
+            return;
+        }
+
+        const majors = job.majors;
+        const major1 = document.getElementById("major1");
+        const major2 = document.getElementById("major2");
+        const major3 = document.getElementById("major3");
+
+        // Reset
+        [major1, major2, major3].forEach(div => div.innerHTML = "");
+
+        if (majors[0]) {
+            major1.innerHTML = `
+                <h3>${majors[0].Major_name}</h3>
+                <p>Degree: ${job.Final_degree}
+                <p>Years of schooling: ${job.years_needed}</p>
+                <p>Cost estimate: $${job.avgCost}</p>
+                <p>Credit Hours: ${majors[0].CreditHrs}
+            `;
+        }
+
+        if (majors[1]) {
+            major2.innerHTML = `
+                <h3>${majors[1].Major_name}</h3>
+                <p>Degree: ${job.Final_degree}
+                <p>Years of schooling: ${job.years_needed}</p>
+                <p>Cost estimate: $${job.avgCost}</p>
+                <p>Credit Hours: ${majors[1].CreditHrs}
+            `;
+        }
+
+        if (majors[2]) {
+            major3.innerHTML = `
+                <h3>${majors[2].Major_name}</h3>
+                <p>Degree: ${job.Final_degree}
+                <p>Years of schooling: ${job.years_needed}</p>
+                <p>Cost estimate: $${job.avgCost}</p>
+                <p>Credit Hours: ${majors[2].CreditHrs}
+            `;
+        }
+
+    } catch (err) {
+        console.error("Failed to fetch job info:", err);
+    }
 }
 
-// Helper to capitalize names
-function capitalize(word) {
-  return word.charAt(0).toUpperCase() + word.slice(1);
-}
 
 
 document.getElementById("careersearch").addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     e.preventDefault();
     const query = e.target.value.trim();
-    if (query) populateBoxes(query);
+    if (query) populateMajors(query);
   }
 });
 
@@ -203,12 +221,8 @@ document.getElementById("searchButton").addEventListener("click", () => {
 	console.log(document.getElementById("careersearch"));
   const input = document.getElementById("careersearch");
   const query = input.value.trim();
-  if (query) populateBoxes(query);
+  if (query) populateMajors(query);
 });
-
- 
-
-
 
 
 })();
