@@ -94,7 +94,7 @@ VALUES
 ('Cellular & Molecular Biology', 120, 'Focus on molecular and cellular mechanisms of life'),
 ('Biology', 120, 'Broad study of living organisms and biological systems'),
 ('Chemistry', 120, 'Study of matter, reactions, and composition'),
-('Nursing', 120, 'Healthcare and patient care studies');
+('Nursing', 120, 'Healthcare and patient care studies'),
 ('Exercise Science', 120, 'Study of human movement, exercise physiology, and rehabilitation sciences'),
 ('Paramedicine', 120, 'Emergency medical care, trauma response, and pre-hospital procedures');
 -- add all current jobs 
@@ -108,7 +108,7 @@ VALUES
 ('Dentist', 'DDS', 8, 400000.00, 195000.00),
 ('Dermatologist', 'MD or OD', 11, 300000.00, NULL),
 ('Anesthesiologist', 'MD or OD', 11, 300000.00, NULL),
-('Surgeon', 'MD or OD', 13, 300000.00, NULL);
+('Surgeon', 'MD or OD', 13, 300000.00, NULL),
 ('Veterinarian', 'DVM', 4, 400000.00, 120000.00),
 ('Radiologist', 'MD or OD', 11, 300000.00, 526000.00),
 ('Physical Therapist', 'DPT', 3, 200000.00, 100000.00),
